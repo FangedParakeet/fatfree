@@ -174,10 +174,7 @@ class Session extends Mapper {
 		@session_start();
 		$fw=\Base::instance();
 		$headers=$fw->get('HEADERS');
-		if (($ip=$this->ip()) && $ip!=$fw->get('IP') ||
-			($agent=$this->agent()) &&
-			(!isset($headers['User-Agent']) ||
-				$agent!=$headers['User-Agent'])) {
+		if (($ip=$this->ip()) && $ip!=$fw->get('IP')) {
 			session_destroy();
 			$fw->error(403);
 		}
